@@ -1,0 +1,67 @@
+## CodeFormer – Tech Stack
+========================================
+
+## Core Framework
+- Python 3.8
+- PyTorch 2.4.1          — Deep learning framework (model inference & training)
+- TorchVision 0.19.1     — Image transforms and vision utilities
+
+## Model Architecture
+- Transformer (VQGAN + Codebook Lookup Transformer)
+  - VQ-GAN               — Vector quantized codebook (discrete latent space)
+  - CodeFormer           — Transformer encoder-decoder for face restoration
+  - RRDBNet              — Residual-in-Residual Dense Block (Real-ESRGAN backbone)
+
+## Face Processing
+- FaceLib                — Face detection, alignment, and parsing
+  - RetinaFace           — Face detection (Resnet50 backbone)
+  - ParseNet             — Face parsing / segmentation
+- OpenCV (cv2)           — Image read/write, color conversion, resizing
+
+## Background Enhancement
+- Real-ESRGAN            — Super-resolution for background regions (RRDBNet x2)
+
+## Web Interface
+- Gradio 4.44.1          — Browser-based UI (image upload, sliders, file download)
+- Uvicorn                — ASGI server powering Gradio
+- FastAPI                — Web framework used internally by Gradio
+
+## Image Processing Libraries
+- NumPy 1.24.4           — Array operations
+- Pillow 10.4.0          — Image I/O
+- scikit-image 0.21.0    — Image quality metrics
+- scipy 1.10.1           — Scientific computing utilities
+- lpips                  — Perceptual image similarity loss
+
+## Training Utilities (included but not used for inference)
+- BasicSR                — Super-resolution training framework (base of this project)
+- TensorBoard            — Training loss visualization
+- LMDB                   — Fast dataset storage for training
+- YAPF                   — Python code formatter
+
+## Download & Networking
+- gdown                  — Google Drive model downloader
+- requests               — HTTP client
+- tqdm                   — Download progress bars
+
+## Hardware Support
+- Apple MPS (Metal)      — GPU acceleration on Apple Silicon (M3 Pro)
+- CUDA (optional)        — GPU acceleration on NVIDIA GPUs
+- CPU fallback           — Runs on CPU if no GPU available
+
+## Environment
+- Conda (miniconda3)     — Python environment manager
+  - env name: codeformer
+- macOS Darwin 24.6.0    — Host OS (Apple M3 Pro, arm64)
+
+## Model Weights
+- codeformer.pth         — Main restoration model   (~359 MB)
+- detection_Resnet50_Final.pth  — Face detector     (~104 MB)
+- parsing_parsenet.pth   — Face parser              (~85 MB)
+- RealESRGAN_x2plus.pth  — Background upsampler     (~67 MB)
+
+## Research Paper
+- "Towards Robust Blind Face Restoration with Codebook Lookup Transformer"
+- NeurIPS 2022
+- Authors: Shangchen Zhou, Kelvin C.K. Chan, Chongyi Li, Chen Change Loy
+- S-Lab, Nanyang Technological University

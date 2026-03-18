@@ -1,0 +1,36 @@
+## Run CodeFormer Gradio App
+
+# Activate the conda environment and launch the web app:
+conda activate codeformer
+cd "/Users/sivam/Documents/Claude test/CodeFormer"
+python app_local.py
+
+# Then open your browser at:
+# http://127.0.0.1:7860
+
+
+## CLI Inference (without Gradio)
+
+# Face restoration - whole image:
+python inference_codeformer.py -w 0.7 --input_path inputs/whole_imgs
+
+# Face restoration - cropped & aligned face:
+python inference_codeformer.py -w 0.5 --has_aligned --input_path inputs/cropped_faces
+
+# Face restoration with background enhancement:
+python inference_codeformer.py -w 0.7 --bg_upsampler realesrgan --face_upsample --input_path inputs/whole_imgs
+
+# Face colorization (B&W to color):
+python inference_colorization.py --input_path inputs/gray_faces
+
+# Face inpainting (fill masked regions):
+python inference_inpainting.py --input_path inputs/masked_faces
+
+# Video enhancement:
+python inference_codeformer.py --bg_upsampler realesrgan --face_upsample -w 1.0 --input_path [video.mp4]
+
+
+## Re-download pretrained weights (if needed)
+
+python scripts/download_pretrained_models.py facelib
+python scripts/download_pretrained_models.py CodeFormer
